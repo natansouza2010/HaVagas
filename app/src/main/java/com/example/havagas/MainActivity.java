@@ -1,5 +1,6 @@
 package com.example.havagas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -24,6 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private DatePickerDialog datePickerDialog;
+    private final static String KEY_INPUT_NOME = "KEY_INPUT_NOME";
+    private final static String KEY_INPUT_EMAIL = "KEY_INPUT_EMAIL";
+    private final static String KEY_INPUT_TELEFONE = "KEY_INPUT_TELEFONE";
+    private final static String KEY_INPUT_CELULAR = "KEY_INPUT_CELULAR";
+    private final static String KEY_INPUT_SEXO = "KEY_INPUT_SEXO";
+    private final static String KEY_INPUT_DATANASC = "KEY_INPUT_DATANASC";
+    private final static String KEY_INPUT_ANOFORM = "KEY_INPUT_ANOFORM";
+    private final static String KEY_INPUT_VAGAINT = "KEY_INPUT_VAGAINT";
+    private final static String KEY_INPUT_INSTITUICAO = "KEY_INPUT_INSTITUICAO";
+    private final static String KEY_INPUT_MONO = "KEY_INPUT_MONO";
+    private final static String KEY_INPUT_ORIENTADOR = "KEY_INPUT_ORIENTADOR";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,7 +269,63 @@ public class MainActivity extends AppCompatActivity {
         //default should never happen
         return "JAN";
     }
+//    String nome = binding.textInputLayout.getEditText().getText().toString();
+//    String email = binding.textInputLayout2.getEditText().getText().toString();
+//    String telefone = binding.textInputLayout3.getEditText().getText().toString();
+//    String tipoTelefone = binding.comercial.isChecked() ? "Comercial" : "Fixo";
+//                if(binding.checkBox.isChecked()){
+//        String celular = binding.textInputLayout4.getEditText().getText().toString();
+//    }
+//    String sexo = binding.feminino.isChecked() ? "Feminino" : "Masculino";
+//    String dataNascimento =  binding.dataNascimento.getText().toString();
+//    String formacao = binding.spinner.getSelectedItem().toString();
+//    String anoConclusao = binding.textInputLayout5.getEditText().getText().toString();
+//                if(formacao != "FUNDAMENTAL" && formacao != "MÉDIO"){
+//        String instituicao = binding.textInputLayout6.getEditText().toString();
+//        if(formacao != "ESPECIALIZAÇÃO" && formacao != "GRADUACAO"){
+//            String tituloMono = binding.textInputLayout7.getEditText().toString();
+//            String orientador = binding.textInputLayout8.getEditText().toString();
+//        }
+//    }
+//    String vagaInteresse = binding.textInputLayout9.getEditText().getText().toString();
 
 
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(KEY_INPUT_NOME, binding.textInputLayout.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_EMAIL, binding.textInputLayout2.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_TELEFONE, binding.textInputLayout3.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_CELULAR, binding.textInputLayout4.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_ANOFORM, binding.textInputLayout5.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_INSTITUICAO, binding.textInputLayout6.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_MONO, binding.textInputLayout7.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_ORIENTADOR, binding.textInputLayout8.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_VAGAINT, binding.textInputLayout9.getEditText().getText().toString());
+        outState.putString(KEY_INPUT_DATANASC, binding.dataNascimento.getText().toString());
+        outState.putString(KEY_INPUT_SEXO, binding.feminino.isChecked() ? "Feminino" : "Masculino");
 
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        binding.textInputLayout.getEditText().setText(savedInstanceState.getString(KEY_INPUT_NOME, ""));
+        binding.textInputLayout2.getEditText().setText(savedInstanceState.getString(KEY_INPUT_EMAIL, ""));
+        binding.textInputLayout3.getEditText().setText(savedInstanceState.getString(KEY_INPUT_TELEFONE, ""));
+        binding.textInputLayout4.getEditText().setText(savedInstanceState.getString(KEY_INPUT_CELULAR, ""));
+        binding.textInputLayout5.getEditText().setText(savedInstanceState.getString(KEY_INPUT_ANOFORM, ""));
+        binding.textInputLayout6.getEditText().setText(savedInstanceState.getString(KEY_INPUT_INSTITUICAO, ""));
+        binding.textInputLayout7.getEditText().setText(savedInstanceState.getString(KEY_INPUT_MONO, ""));
+        binding.textInputLayout8.getEditText().setText(savedInstanceState.getString(KEY_INPUT_ORIENTADOR, ""));
+        binding.textInputLayout9.getEditText().setText(savedInstanceState.getString(KEY_INPUT_VAGAINT, ""));
+        binding.dataNascimento.setText(savedInstanceState.getString(KEY_INPUT_DATANASC, ""));
+        if(savedInstanceState.getString(KEY_INPUT_SEXO, "") == "Feminino"){
+            binding.feminino.setChecked(true);
+        }else{
+            binding.masculino.setChecked(true);
+        }
+
+
+    }
 }
